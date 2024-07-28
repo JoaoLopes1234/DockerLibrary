@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books List</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Books List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Publish Date</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${listBooks}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.publishDate}"></td>
+            <td th:text="${book.price}"></td>
+            <td>
+                <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 th:if="${book.id != null}">Edit Book</h2>
+    <h2 th:if="${book.id == null}">Add New Book</h2>
+    <form th:action="@{/books/save}" th:object="${book}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" />
+        </div>
+        <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" class="form-control" th:field="*{author}" />
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" class="form-control" th:field="*{isbn}" />
+        </div>
+        <div class="form-group">
+            <label for="publishDate">Publish Date:</label>
+            <input type="date" id="publishDate" name="publishDate" class="form-control" th:field="*{publishDate}" />
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" id="price" name="price" class="form-control" th:field="*{price}" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>
