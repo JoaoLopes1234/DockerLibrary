@@ -15,8 +15,11 @@ How to run:
  - Docker (optional for running in a container)
 
 1º - git clone https://github.com/JoaoLopes1234/DockerLibrary.git
+
 2º - cd DockerLibrary.git
+
 3º - mvn clean package
+
 4º - java -jar target/Library-0.0.1.jar
 
 Using Docker:
