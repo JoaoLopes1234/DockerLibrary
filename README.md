@@ -23,7 +23,9 @@ How to run:
 4º - java -jar target/Library-0.0.1.jar
 
 Using Docker:
+
 5º - docker build -t library-app .
+
 6º - docker run -p 8081:8081 library-app
 
 Ckeck it: http://localhost:8081/books
